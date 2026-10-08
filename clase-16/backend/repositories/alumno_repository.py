@@ -47,3 +47,21 @@ class RepositorioAlumnos:
 
         self.__alumnos.remove(alumno)
         return True
+
+    def modificar_nombre(self, legajo: int, nombre: str) -> Alumno | None:
+        alumno = self.obtener_por_legajo(legajo)
+
+        if alumno is None:
+            return None
+
+        nuevo_alumno = Alumno(
+            alumno.legajo,
+            nombre,
+            alumno.apellido,
+            alumno.fecha_de_nacimiento
+        )
+
+        indice = self.__alumnos.index(alumno)
+        self.__alumnos[indice] = nuevo_alumno
+
+        return nuevo_alumno

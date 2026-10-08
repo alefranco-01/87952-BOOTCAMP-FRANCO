@@ -17,3 +17,12 @@ class AlumnoService:
 
     def obtener_alumno_por_legajo(self, legajo: int) -> Alumno | None:
         return self.repo.obtener_por_legajo(legajo)
+
+    def eliminar_alumno(self, legajo: int) -> bool:
+        return self.repo.eliminar(legajo)
+
+    def modificar_nombre(self, legajo: int, nombre: str) -> Alumno | None:
+        if self.repo.obtener_por_legajo(legajo) is None:
+            return None
+
+        return self.repo.modificar_nombre(legajo, nombre)
