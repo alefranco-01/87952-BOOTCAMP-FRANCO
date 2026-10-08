@@ -9,6 +9,14 @@ from services.alumno_service import AlumnoService
 app = Flask(__name__)
 
 
+@app.after_request
+def agregar_cabeceras_cors(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Accept"
+    return response
+
+
 @app.get("/alumnos")
 def obtener_alumnos():
     servicio = AlumnoService()
